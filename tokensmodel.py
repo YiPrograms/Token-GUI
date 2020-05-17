@@ -1,8 +1,7 @@
-
 from PyQt5.QtCore import Qt, pyqtSlot, QAbstractListModel, QModelIndex, QVariant, QModelIndex
 
-class TokensModel(QAbstractListModel):
 
+class TokensModel(QAbstractListModel):
     NameRole = Qt.UserRole + 1
     ValueRole = Qt.UserRole + 2
 
@@ -10,14 +9,13 @@ class TokensModel(QAbstractListModel):
 
     def __init__(self, parent=None):
         QAbstractListModel.__init__(self, parent)
-        
+
         self.tokens = []
 
     def addToken(self, name, value):
         self.beginInsertRows(QModelIndex(), self.rowCount(), self.rowCount())
         self.tokens.append((name, value))
         self.endInsertRows()
-
 
     @pyqtSlot(QModelIndex, float)
     def setValue(self, index, value):
@@ -40,7 +38,7 @@ class TokensModel(QAbstractListModel):
             return value
 
         return QVariant()
-    
+
     def setData(self, index, value, role=Qt.EditRole):
         try:
             name, _ = self.tokens[index.row()]
@@ -51,11 +49,8 @@ class TokensModel(QAbstractListModel):
             self.tokens[index.row()] = (name, value)
             self.dataChanged.emit(index, index)
             return True
-        
+
         return False
-
-        
-
 
     def roleNames(self):
         return self._roles
