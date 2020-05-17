@@ -182,10 +182,62 @@ ApplicationWindow {
 		}
 	}
 	Popup {
+		width: parent.width - 50
+		height: parent.height - 20
 		id: refRecorder
 		modal: true
 		focus: true
+		anchors.centerIn: Overlay.overlay
 		closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
+		ColumnLayout {
+			anchors.fill: parent
+			width: parent.width
+			height: parent.height
+			Label {
+				text: 'Record Reference Audio'
+				font.pixelSize: 32
+			}
+			RowLayout {
+				Item {
+					id: recordPlayVar
+					property string timeText
+				}
+				Button {
+					id: recordBtn
+				}
+				Slider {
+					id: recordPlaySlider
+					Layout.fillWidth: true
+					from: 0
+					to: 180
+					Component.onCompleted: value = 10
+					onValueChanged: {
+						value = ~~(value)
+						recordPlayVar.timeText = ~~(recordPlaySlider.value / 60) + ":" + (recordPlaySlider.value % 60).toString().padStart(2, "0")
+					}
+					ToolTip {
+						parent: recordPlaySlider.handle
+						visible: recordPlaySlider.pressed
+						text: recordPlayVar.timeText
+					}
+				}
+				Label {
+					Layout.preferredWidth: 40
+					text: recordPlayVar.timeText
+				}
+			}
+			RowLayout {
+				Layout.alignment: Qt.AlignRight
+				Button {
+					text: 'Cancel'
+					onClicked: refRecorder.close()
+				}
+				Button {
+					text: 'OK'
+					onClicked: refRecorder.close() //TODO SAVE
+				}
+			}
+		}
 	}
 }
 
