@@ -6,15 +6,15 @@ import QtQuick.Controls.Material 2.12
 
 ApplicationWindow {
 	id: mainWindow
-    visible: true
-    minimumWidth: 800
-    minimumHeight: 600
+	visible: true
+	minimumWidth: 800
+	minimumHeight: 600
 
-    Material.theme: Material.Dark
-    Material.accent: Material.Cyan
-    Material.primary: '#333333'// Material.Indigo
+	Material.theme: Material.Dark
+	Material.accent: Material.Cyan
+	Material.primary: '#333333'// Material.Indigo
 
-    header: ToolBar {
+	header: ToolBar {
 		RowLayout {
 			anchors.fill: parent
 			ToolButton {
@@ -48,106 +48,70 @@ ApplicationWindow {
 		dim: false
 		ColumnLayout {
 			width: parent.width
-            Item {
-                // spacer item
-                height: 5
-            }
-			Label {
-                text: 'Tokens Preset'
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                font.pixelSize: 20
-                Layout.fillWidth: true
+			Item {
+				// spacer item
+				height: 5
 			}
-            Item {
-                // spacer item
-                height: 10
-            }
+			Label {
+				text: 'Tokens Preset'
+				horizontalAlignment: Text.AlignHCenter
+				verticalAlignment: Text.AlignVCenter
+				font.pixelSize: 20
+				Layout.fillWidth: true
+			}
+			Item {
+				// spacer item
+				height: 10
+			}
 			SideNavButton {
-              icon.source: '../images/mic-24px.svg'
-              text: 'Record Ref Audio'
-              Layout.fillWidth: true
-              onClicked: refRecorder.open()
-            }
+				icon.source: 'qrc:/resources/mic-24px.svg'
+				text: 'Record Ref Audio'
+				Layout.fillWidth: true
+				onClicked: refRecorder.open()
+			}
 			Repeater {
-                width: parent.width
+				width: parent.width
 				model: 5
 				SideNavButton {
 					icon.source: 'qrc:/resources/baseline-category-24px.svg'
 					text: 'List ' + index
 					width: parent.width
-                    Layout.fillWidth: true
+					Layout.fillWidth: true
 				}
 			}
 		}
 	}
-    Pane {
+	Pane {
 		padding: 10
 		anchors.fill: parent
-        ColumnLayout {
+		ColumnLayout {
 			id: main
-            anchors.fill: parent
-            RowLayout {
-                spacing: 10
-                ColumnLayout {
-                spacing: -4
-                    TextField {
-                        Layout.fillWidth: true
+			anchors.fill: parent
+			RowLayout {
+				spacing: 10
+				ColumnLayout {
+				spacing: -4
+					TextField {
+						Layout.fillWidth: true
 						width: parent.width
 						placeholderText: qsTr("Chinese Input")
 						selectByMouse: true
 					}
-                    TextField {
-                        Layout.fillWidth: true
+					TextField {
+						Layout.fillWidth: true
 						width: parent.width
 						placeholderText: qsTr("Zhuyin Input")
 						selectByMouse: true
 					}
-                }
-                Button {
-                    Layout.preferredWidth: 100
-                    text: qsTr("Generate")
-                    Layout.preferredHeight: parent.height
-                }
-            }
-//			RowLayout {
-//				width: mainWindow.width - 10
-//				spacing: 10
-//				Item {
-//					id: refplayVar
-//					property string timeText
-//				}
-//				Label {
-//					text: "Ref"
-//				}
-//				Button {
-//					id: refplayBtn
-//				}
-//				Slider {
-//					id: refplaySlider
-//					Layout.fillWidth: true
-//					from: 0
-//					to: 180
-//					Component.onCompleted: value = 10
-//					onValueChanged: {
-//						value = Math.floor(value)
-//						refplayVar.timeText = Math.floor(refplaySlider.value / 60) + ":" + (refplaySlider.value % 60).toString().padStart(2, "0")
-//					}
-//					ToolTip {
-//						parent: refplaySlider.handle
-//						visible: refplaySlider.pressed
-//						text: refplayVar.timeText
-//					}
-//				}
-//				Label {
-//					Layout.preferredWidth: 40
-//					text: refplayVar.timeText
-//				}
-//			}
-
+				}
+				Button {
+					Layout.preferredWidth: 100
+					text: qsTr("Generate")
+					Layout.preferredHeight: parent.height
+				}
+			}
 			RowLayout {
 				Pane {
-//				    title: "Style Tokens"
 					Layout.fillWidth: true
 					Layout.fillHeight: true
 					clip: true
@@ -182,7 +146,7 @@ ApplicationWindow {
 				}
 			}
 		}
-    }
+	}
 	footer: Pane {
 		padding: 10
 		RowLayout {
@@ -217,12 +181,12 @@ ApplicationWindow {
 			}
 		}
 	}
-    Popup {
-        id: refRecorder
-        modal: true
-        focus: true
-        closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
-    }
+	Popup {
+		id: refRecorder
+		modal: true
+		focus: true
+		closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
+	}
 }
 
 

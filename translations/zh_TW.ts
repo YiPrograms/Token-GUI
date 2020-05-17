@@ -4,17 +4,17 @@
 <context>
     <name>token-gui</name>
     <message>
-        <location filename="../qml/token-gui.qml" line="78"/>
+        <location filename="../qml/token-gui.qml" line="97"/>
         <source>Chinese Input</source>
         <translation>中文輸入</translation>
     </message>
     <message>
-        <location filename="../qml/token-gui.qml" line="84"/>
+        <location filename="../qml/token-gui.qml" line="103"/>
         <source>Zhuyin Input</source>
         <translation>注音輸入</translation>
     </message>
     <message>
-        <location filename="../qml/token-gui.qml" line="90"/>
+        <location filename="../qml/token-gui.qml" line="109"/>
         <source>Generate</source>
         <translation>生成</translation>
     </message>
