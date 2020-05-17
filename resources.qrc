@@ -1,13 +1,8 @@
-<!DOCTYPE RCC><RCC version="1.0">
+<!DOCTYPE RCC><RCC version='1.0'>
 <qresource>
-    <file>resources/qml/example-material.qml</file>
-    <file>resources/qml/token-gui.qml</file>
-    <file>resources/qml/TokenSlider.qml</file>
-    <file>resources/qml/main.qml</file>
-    <file>resources/qml/CellBox.qml</file>
-    <file>resources/qml/SideNavButton.qml</file>
-    <file>resources/images/baseline-category-24px.svg</file>
-    <file>resources/images/baseline-menu-24px.svg</file>
-    <file>resources/images/baseline-more_vert-24px.svg</file>
+	<file>resources</file>
+	<file>resources/baseline-more_vert-24px.svg</file>
+	<file>resources/baseline-category-24px.svg</file>
+	<file>resources/baseline-menu-24px.svg</file>
 </qresource>
 </RCC>

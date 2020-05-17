@@ -1,17 +1,24 @@
 import os
 import sys
 
-from PyQt5.QtCore import QUrl, QObject
+from PyQt5.QtCore import QUrl, QObject, QTranslator, QLocale
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtQml import QQmlApplicationEngine
-from resources import resources  # load resources built by pyrcc5
-
+import resources
 from tokensmodel import TokensModel
 
 
 os.environ['QT_QUICK_CONTROLS_STYLE'] = "Material"
 app = QApplication(sys.argv)
 engine = QQmlApplicationEngine()
+translator = QTranslator()
+translation_found = translator.load('translations/' + QLocale.system().name())
+app.installTranslator(translator)
+
+if translation_found:
+    print("Loaded translation:", QLocale.system().name())
+else:
+    print("Translation not found:", QLocale.system().name())
 
 
 
@@ -27,7 +34,7 @@ context.setContextProperty('tokens', tokens)
 
 
 
-engine.load(QUrl('qrc:/resources/qml/token-gui.qml'))
+engine.load(QUrl('qml/token-gui.qml'))
 if not engine.rootObjects():
     sys.exit(-1)
 

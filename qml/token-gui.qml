@@ -17,7 +17,7 @@ ApplicationWindow {
 		RowLayout {
 			anchors.fill: parent
 			ToolButton {
-				icon.source: '../images/baseline-menu-24px.svg'
+				icon.source: 'qrc:/resources/baseline-menu-24px.svg'
 				onClicked: sideNav.open()
 			}
 			Label {
@@ -28,7 +28,7 @@ ApplicationWindow {
 				Layout.fillWidth: true
 			}
 			ToolButton {
-				icon.source: '../images/baseline-more_vert-24px.svg'
+				icon.source: 'qrc:/resources/baseline-more_vert-24px.svg'
 				onClicked: menu.open()
 				Menu {
 					id: menu
@@ -56,7 +56,7 @@ ApplicationWindow {
 			Repeater {
 				model: 5
 				SideNavButton {
-					icon.source: '../images/baseline-category-24px.svg'
+					icon.source: 'qrc:/resources/baseline-category-24px.svg'
 					text: 'List ' + index
 					Layout.fillWidth: true
 				}
@@ -75,19 +75,19 @@ ApplicationWindow {
                     TextField {
                         Layout.fillWidth: true
 						width: parent.width
-						placeholderText: '中文輸入'
+						placeholderText: qsTr("Chinese Input")
 						selectByMouse: true
 					}
                     TextField {
                         Layout.fillWidth: true
 						width: parent.width
-						placeholderText: '注音輸入'
+						placeholderText: qsTr("Zhuyin Input")
 						selectByMouse: true
 					}
                 }
                 Button {
                     Layout.preferredWidth: 100
-                    text: '生成'
+                    text: qsTr("Generate")
                     Layout.preferredHeight: parent.height
                 }
             }	
