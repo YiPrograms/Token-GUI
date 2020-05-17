@@ -3,15 +3,16 @@ import QtQuick.Layouts 1.11
 import QtQuick.Controls 2.12
 import QtQuick.Controls.Material 2.12
 
+
 ApplicationWindow {
 	id: mainWindow
     visible: true
     minimumWidth: 800
     minimumHeight: 600
-	
+
     Material.theme: Material.Dark
-    Material.accent: Material.Purple
-    Material.primary: Material.Orange
+    Material.accent: Material.Cyan
+    Material.primary: '#333333'// Material.Indigo
 
     header: ToolBar {
 		RowLayout {
@@ -44,21 +45,38 @@ ApplicationWindow {
 		id: sideNav
 		width: 200
 		height: parent.height
+		dim: false
 		ColumnLayout {
 			width: parent.width
+            Item {
+                // spacer item
+                height: 5
+            }
 			Label {
-					text: 'Drawer'
-					horizontalAlignment: Text.AlignHCenter
-					verticalAlignment: Text.AlignVCenter
-					font.pixelSize: 20
-					Layout.fillWidth: true
+                text: 'Tokens Preset'
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                font.pixelSize: 20
+                Layout.fillWidth: true
 			}
+            Item {
+                // spacer item
+                height: 10
+            }
+			SideNavButton {
+              icon.source: '../images/mic-24px.svg'
+              text: 'Record Ref Audio'
+              Layout.fillWidth: true
+              onClicked: refRecorder.open()
+            }
 			Repeater {
+                width: parent.width
 				model: 5
 				SideNavButton {
 					icon.source: 'qrc:/resources/baseline-category-24px.svg'
 					text: 'List ' + index
-					Layout.fillWidth: true
+					width: parent.width
+                    Layout.fillWidth: true
 				}
 			}
 		}
@@ -72,6 +90,7 @@ ApplicationWindow {
             RowLayout {
                 spacing: 10
                 ColumnLayout {
+                spacing: -4
                     TextField {
                         Layout.fillWidth: true
 						width: parent.width
@@ -90,46 +109,49 @@ ApplicationWindow {
                     text: qsTr("Generate")
                     Layout.preferredHeight: parent.height
                 }
-            }	
+            }
+//			RowLayout {
+//				width: mainWindow.width - 10
+//				spacing: 10
+//				Item {
+//					id: refplayVar
+//					property string timeText
+//				}
+//				Label {
+//					text: "Ref"
+//				}
+//				Button {
+//					id: refplayBtn
+//				}
+//				Slider {
+//					id: refplaySlider
+//					Layout.fillWidth: true
+//					from: 0
+//					to: 180
+//					Component.onCompleted: value = 10
+//					onValueChanged: {
+//						value = Math.floor(value)
+//						refplayVar.timeText = Math.floor(refplaySlider.value / 60) + ":" + (refplaySlider.value % 60).toString().padStart(2, "0")
+//					}
+//					ToolTip {
+//						parent: refplaySlider.handle
+//						visible: refplaySlider.pressed
+//						text: refplayVar.timeText
+//					}
+//				}
+//				Label {
+//					Layout.preferredWidth: 40
+//					text: refplayVar.timeText
+//				}
+//			}
+
 			RowLayout {
-				width: mainWindow.width - 10
-				spacing: 10
-				Item {
-					id: refplayVar
-					property string timeText
-				}
-				Label {
-					text: "Ref"
-				}
-				Button {
-					id: refplayBtn
-				}
-				Slider {
-					id: refplaySlider
-					Layout.fillWidth: true
-					from: 0
-					to: 180
-					Component.onCompleted: value = 10
-					onValueChanged: {
-						value = Math.floor(value)
-						refplayVar.timeText = Math.floor(refplaySlider.value / 60) + ":" + (refplaySlider.value % 60).toString().padStart(2, "0")
-					}
-					ToolTip {
-						parent: refplaySlider.handle
-						visible: refplaySlider.pressed
-						text: refplayVar.timeText
-					}
-				}
-				Label {
-					Layout.preferredWidth: 40
-					text: refplayVar.timeText
-				}
-			}
-			RowLayout {
-				GroupBox {
+				Pane {
+//				    title: "Style Tokens"
 					Layout.fillWidth: true
 					Layout.fillHeight: true
 					clip: true
+					width: parent.width * .5
 					ScrollView {
 						id: tokensScroll
 						width: parent.width
@@ -139,6 +161,7 @@ ApplicationWindow {
 						Column {
 							id: tokensColumn
 							width: parent.width
+							spacing: 0
 							Repeater {
 								model: tokens
 								delegate: TokenSlider {}
@@ -179,8 +202,8 @@ ApplicationWindow {
 				to: 180
 				Component.onCompleted: value = 10
 				onValueChanged: {
-					value = Math.floor(value)
-					playVar.timeText = Math.floor(playSlider.value / 60) + ":" + (playSlider.value % 60).toString().padStart(2, "0")
+					value = ~~(value)
+					playVar.timeText = ~~(playSlider.value / 60) + ":" + (playSlider.value % 60).toString().padStart(2, "0")
 				}
 				ToolTip {
 					parent: playSlider.handle
@@ -194,5 +217,12 @@ ApplicationWindow {
 			}
 		}
 	}
-	
+    Popup {
+        id: refRecorder
+        modal: true
+        focus: true
+        closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutsideParent
+    }
 }
+
+

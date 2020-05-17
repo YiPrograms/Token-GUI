@@ -5,8 +5,9 @@ import QtQuick.Controls.Material 2.12
 
 ColumnLayout {
     width: tokensScroll.width
-    Label { text: model.name }
+    height: Math.max(tokensScroll.height / tokens.rowCount(), 16)
     RowLayout {
+        Label { text: model.name }
         Slider {
             id: slider
             Layout.fillWidth: true

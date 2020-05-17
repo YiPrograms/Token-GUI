@@ -17,7 +17,8 @@ class TokensModel(QAbstractListModel):
         self.beginInsertRows(QModelIndex(), self.rowCount(), self.rowCount())
         self.tokens.append((name, value))
         self.endInsertRows()
-    
+
+
     @pyqtSlot(QModelIndex, float)
     def setValue(self, index, value):
         name, _ = self.tokens[index.row()]

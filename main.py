@@ -7,7 +7,6 @@ from PyQt5.QtQml import QQmlApplicationEngine
 import resources
 from tokensmodel import TokensModel
 
-
 os.environ['QT_QUICK_CONTROLS_STYLE'] = "Material"
 app = QApplication(sys.argv)
 engine = QQmlApplicationEngine()
@@ -19,8 +18,6 @@ if translation_found:
     print("Loaded translation:", QLocale.system().name())
 else:
     print("Translation not found:", QLocale.system().name())
-
-
 
 n_tokens = 10
 tokens = TokensModel()

@@ -2,3 +2,4 @@
 .vscode
 *.qm
 resources.py
+.idea
