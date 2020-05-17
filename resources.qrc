@@ -1,9 +1,0 @@
-<!DOCTYPE RCC><RCC version='1.0'>
-<qresource>
-	<file>resources</file>
-	<file>resources/baseline-more_vert-24px.svg</file>
-	<file>resources/mic-24px.svg</file>
-	<file>resources/baseline-category-24px.svg</file>
-	<file>resources/baseline-menu-24px.svg</file>
-</qresource>
-</RCC>
